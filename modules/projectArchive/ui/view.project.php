@@ -1,6 +1,6 @@
 <?php
 include_once 'blade/view.project.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 ?>
 
 <div class="container">
@@ -8,7 +8,7 @@ include_once COMMON.'class.common.php';
     <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default myPanel">
         <div class="panel-heading myHeading">
-            <strong><img src="./resources/img/createproject.png" alt="Icon" class="myImg">&nbsp;Create Project</strong>
+            <strong>&nbsp;Create Project</strong>
         </div>
         <div class="panel-body">
 
