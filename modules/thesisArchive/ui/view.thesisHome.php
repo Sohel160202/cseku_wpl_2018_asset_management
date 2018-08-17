@@ -1,6 +1,6 @@
 <?php
-include_once TEMPLATE.'basic/navbar.php';
-include_once COMMON.'class.common.php';
+
+include_once COMMON.'class.common.inc';
 include_once COMMON.'class.paginate.php';
 include_once 'blade/view.thesisHome.blade.php';
 ?>
@@ -19,7 +19,6 @@ include_once 'blade/view.thesisHome.blade.php';
             <div class="col-lg-3 portfolio-item">
                 <div class="card h-37">
                     <a href="<?php echo PageUtil::$THESIS_MEMBER.'?id='.$thesis->getThesisId();?>" class="card-header">
-                        <img class="card-img-top" src="<?php echo $thesis->getThesisThumbnail();?>" alt="Thesis" ></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="<?php echo PageUtil::$THESIS_MEMBER.'?id='.$thesis->getThesisId();?>"><?php echo $thesis->getThesisTitle();?></a>

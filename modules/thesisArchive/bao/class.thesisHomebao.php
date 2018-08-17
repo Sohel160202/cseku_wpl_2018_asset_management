@@ -1,6 +1,6 @@
 <!--Thesis Homepage-->
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULES_THESIS.'dao/class.thesisdao.php';
 include_once MODULES_THESIS.'dao/class.thesisHomedao.php';
 

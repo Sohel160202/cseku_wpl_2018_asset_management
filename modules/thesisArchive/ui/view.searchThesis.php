@@ -1,6 +1,6 @@
 <?php
 include_once 'blade/view.searchThesis.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 ?>
 
 <link rel="stylesheet" href="./resources/css/sidebarStyle.css">
@@ -12,7 +12,7 @@ include_once COMMON.'class.common.php';
       <nav class="navbar navbar-default sidebar" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header mySideNav">
-                <span><strong style="font-size: large"><img src="./resources/img/filter.png" alt="Icon" class="myImg">Filter</strong></span>
+                <span><strong style="font-size: large">Filter</strong></span>
                 <!--Responsive-->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -106,7 +106,7 @@ include_once COMMON.'class.common.php';
         <div class="panel panel-default myPanel">
 
             <div class="panel-heading myHeading">
-                <strong><img src="./resources/img/searchProject.png" alt="Icon" class="myImg">&nbsp;Search Thesis</strong>
+                <strong>&nbsp;Search Thesis</strong>
             </div>
 
             <div class="panel-body form-horizontal">
@@ -115,7 +115,7 @@ include_once COMMON.'class.common.php';
                 <form method="post" class="form-horizontal">
 
                     <!--Title-->
-                    <div id="divtitle" class="form-group" hidden >
+                    <div id="divtitle" class="form-group"  >
                         <label for="title" class="control-label col-md-3">Title :</label>
                         <div class="col-md-7">
                             <input type="text" name="title" id="title" class="form-control" placeholder="Thesis Title" value="<?php
@@ -125,11 +125,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Year-->
-                    <div id="divyear" class="form-group" hidden>
+                    <div id="divyear" class="form-group" >
                         <label for="year_id" class="control-label col-md-3">Year :</label>
                         <div class="col-md-7">
                             <select name="year_id" id="year_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Year</option>
+                                <option value="" selected="selected" >Select Year</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllYears();
                                 if ($Result->getIsSuccess()){
@@ -151,11 +151,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Term-->
-                    <div id="divterm" class="form-group" hidden>
+                    <div id="divterm" class="form-group" >
                         <label for="term_id" class="control-label col-md-3">Term :</label>
                         <div class="col-md-7">
                             <select name="term_id" id="term_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Term</option>
+                                <option value="" selected="selected" >Select Term</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllTerms();
                                 if ($Result->getIsSuccess()){
@@ -176,11 +176,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Course-->
-                    <div id="divcourse" class="form-group" hidden>
+                    <div id="divcourse" class="form-group" >
                         <label for="course_id" class="control-label col-md-3">Course :</label>
                         <div class="col-md-7">
                             <select name="course_id" id="course_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Course</option>
+                                <option value="" selected="selected" >Select Course</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllCourses();
                                 if ($Result->getIsSuccess()){
@@ -201,11 +201,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Discipline-->
-                    <div id="divdiscipline" class="form-group" hidden>
+                    <div id="divdiscipline" class="form-group" >
                         <label for="discipline_id" class="control-label col-md-3">Discipline :</label>
                         <div class="col-md-7">
                             <select name="discipline_id" id="discipline_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Discipline</option>
+                                <option value="" selected="selected" >Select Discipline</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllDisciplines();
                                 if ($Result->getIsSuccess()){
@@ -226,11 +226,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Teacher-->
-                    <div id="divteacher" class="form-group" hidden>
+                    <div id="divteacher" class="form-group" >
                         <label for="teacher_id" class="control-label col-md-3">Teacher:</label>
                         <div class="col-md-7">
                             <select name="teacher_id" id="teacher_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Teacher</option>
+                                <option value="" selected="selected" >Select Teacher</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllTeachers();
                                 if ($Result->getIsSuccess()){
@@ -251,11 +251,11 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--Member-->
-                    <div id="divmember" class="form-group" hidden>
+                    <div id="divmember" class="form-group" >
                         <label for="member_id" class="control-label col-md-3">Member :</label>
                         <div class="col-md-7">
                             <select name="member_id" id="member_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Member</option>
+                                <option value="" selected="selected" >Select Member</option>
                                 <?php
                                 $Result=$_SearchThesisBao->getAllStudents();
                                 if ($Result->getIsSuccess()){
@@ -276,7 +276,7 @@ include_once COMMON.'class.common.php';
                     </div>
 
                     <!--CreatedAt-->
-                    <div id="divcreated_at" class="form-group" hidden>
+                    <div id="divcreated_at" class="form-group" >
                         <label for="created_at" class="control-label col-md-3">Date :</label>
                         <div class="col-md-7">
                             <input type="date" name="created_at" id="created_at" class="form-control" value="<?php

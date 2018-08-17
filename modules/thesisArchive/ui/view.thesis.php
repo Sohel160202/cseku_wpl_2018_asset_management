@@ -1,7 +1,7 @@
 <?php
 include_once 'blade/view.thesis.blade.php';
-include_once COMMON.'class.common.php';
-include_once UTILITY.'class.util.php';
+include_once COMMON.'class.common.inc';
+include_once UTILITY.'class.util.inc';
 ?>
 
 
@@ -10,7 +10,7 @@ include_once UTILITY.'class.util.php';
         <!--Heading-->
         <div class="panel panel-default myPanel">
             <div class="panel-heading myHeading">
-                <strong><img src="./resources/img/createproject.png" alt="Icon" class="myImg">&nbsp;Create Thesis</strong>
+                <strong>&nbsp;Create Thesis</strong>
             </div>
             <div class="panel-body">
 
@@ -34,7 +34,7 @@ include_once UTILITY.'class.util.php';
                         <label for="year_id" class="control-label col-md-3">Year :</label>
                         <div class="col-md-7">
                             <select name="year_id" id="year_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Year</option>
+                                <option value="" selected="selected" >Select Year</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllYears();
                                 if($Result->getIsSuccess()){
@@ -61,7 +61,7 @@ include_once UTILITY.'class.util.php';
                         <label for="term_id" class="control-label col-md-3">Term :</label>
                         <div class="col-md-7">
                             <select name="term_id" id="term_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Term</option>
+                                <option value="" selected="selected" >Select Term</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllTerms();
                                 if($Result->getIsSuccess()) {
@@ -88,7 +88,7 @@ include_once UTILITY.'class.util.php';
                         <label for="course_id" class="control-label col-md-3">Course No :</label>
                         <div class="col-md-7">
                             <select name="course_id" id="course_id" class="form-control" onchange="jsFunction(this.value);" required>
-                                <option value="" selected="selected" disabled>Select Course</option>
+                                <option value="" selected="selected" >Select Course</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllCourses();
                                 if($Result->getIsSuccess()){
@@ -128,7 +128,7 @@ include_once UTILITY.'class.util.php';
                         <label for="discipline_id" class="control-label col-md-3">Discipline :</label>
                         <div class="col-md-7">
                             <select name="discipline_id" id="discipline_id" class="form-control" required>
-                                <option value="" selected="selected" disabled>Select Discipline</option>
+                                <option value="" selected="selected" >Select Discipline</option>
                                 <?php
                                 $Result=$_ThesisBao->getAllDisciplines();
                                 if($Result->getIsSuccess()){

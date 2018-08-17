@@ -1,5 +1,5 @@
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULES_THESIS.'bao/class.thesisbao.php';
 
 $_ThesisBao=new ThesisBao();

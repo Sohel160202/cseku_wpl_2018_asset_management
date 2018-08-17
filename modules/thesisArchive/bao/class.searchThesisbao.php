@@ -1,6 +1,6 @@
 <!--Search specific thesis-->
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULES_THESIS.'dao/class.searchThesisdao.php';
 
 /*
