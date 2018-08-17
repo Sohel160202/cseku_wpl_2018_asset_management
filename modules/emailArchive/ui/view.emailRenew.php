@@ -1,6 +1,6 @@
 <?php
 include_once 'blade/view.emailRenew.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 include_once COMMON.'class.paginate.php';
 ?>
 
@@ -17,7 +17,7 @@ include_once COMMON.'class.paginate.php';
                     <th>Created At</th>
                     <th>Expire At</th>
                     <th>Validity</th>
-                    <th><img src="./resources/img/renew.png" alt="Renew" class="table-img"></th>
+                    <th>Renew</th>
                 </tr>
 
                 <!--Table Cells-->

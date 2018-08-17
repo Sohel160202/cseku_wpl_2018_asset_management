@@ -1,6 +1,6 @@
 <?php
 include_once 'blade/view.emailExpired.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 include_once COMMON.'class.paginate.php';
 ?>
 
@@ -17,7 +17,7 @@ include_once COMMON.'class.paginate.php';
                 <th>Created At</th>
                 <th>Expire At</th>
                 <th>Validity</th>
-                <th><img src="./resources/img/extend.png" alt="Extend" class="table-img"></th>
+                <th>Extended</th>
             </tr>
 
             <!--Table Cells-->

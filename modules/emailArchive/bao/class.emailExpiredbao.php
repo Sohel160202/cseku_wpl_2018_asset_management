@@ -1,6 +1,6 @@
 <!--Email CRUD-->
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULES_EMAIL.'dao/class.emailExpireddao.php';
 
 /*

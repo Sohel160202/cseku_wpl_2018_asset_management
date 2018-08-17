@@ -2,7 +2,7 @@
 <?php
 // write dao object for each class
 include_once COMMON.'class.common.email.php';
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 
 Class EmailRenewDao
 {

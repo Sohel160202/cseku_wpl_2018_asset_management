@@ -1,13 +1,13 @@
 <?php
 include_once 'blade/view.email.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 ?>
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
     <!--Heading-->
     <div class="panel panel-default myPanel">
         <div class="panel-heading myHeading">
-            <strong><img src="./resources/img/createproject.png" alt="Icon" class="myImg">&nbsp;Create Email Record</strong>
+            <strong>&nbsp;Create Email Record</strong>
         </div>
         <div class="panel-body">
 
@@ -146,8 +146,8 @@ include_once COMMON.'class.common.php';
             <th>Address</th>
             <th>Created At</th>
             <th>Expire At</th>
-            <th><img src="./resources/img/edit.ico" alt="Edit" class="table-img"></th>
-            <th><img src="./resources/img/delete.png" alt="Delete" class="table-img"></th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
 
         <!--Table Cells-->
