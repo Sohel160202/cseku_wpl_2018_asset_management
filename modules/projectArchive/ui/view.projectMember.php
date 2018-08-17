@@ -1,6 +1,6 @@
 <?php
 include_once 'blade/view.projectMember.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 ?>
 
 <div class="container">

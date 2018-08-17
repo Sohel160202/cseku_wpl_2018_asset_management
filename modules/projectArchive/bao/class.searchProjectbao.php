@@ -1,6 +1,6 @@
 <!--Search specific project-->
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULE_PROJECT.'dao/class.searchProjectdao.php';
 
 /*

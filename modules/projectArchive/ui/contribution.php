@@ -6,7 +6,7 @@ $ConVal=$_GET['conval'];
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "based";
+$dbname = "cseku";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

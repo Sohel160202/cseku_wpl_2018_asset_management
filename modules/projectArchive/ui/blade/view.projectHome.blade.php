@@ -1,5 +1,5 @@
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULE_PROJECT.'bao/class.projectbao.php';
 include_once MODULE_PROJECT.'bao/class.projectHomebao.php';
 

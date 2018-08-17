@@ -7,7 +7,7 @@ if (strlen($Key)>0) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "based";
+    $dbname = "cseku";
 
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -16,10 +16,10 @@ if (strlen($Key)>0) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT tbl_user.Email FROM tbl_user INNER JOIN tbl_user_role ON tbl_user.ID=tbl_user_role.UserID
-    INNER JOIN tbl_role ON tbl_user_role.RoleID=tbl_role.ID WHERE tbl_role.Name='Student'
-    AND tbl_user.Email NOT IN (SELECT pms_student_project.student_id FROM pms_student_project WHERE 
-    pms_student_project.project_id='".$PId."') AND tbl_user.Email LIKE '%$Key%'";
+    $sql = "SELECT ums_user.Email FROM ums_user INNER JOIN ums_user_role ON ums_user.ID=ums_user_role.UserID
+    INNER JOIN ums_role ON ums_user_role.RoleID=ums_role.ID WHERE ums_role.Name='Student'
+    AND ums_user.Email NOT IN (SELECT pms_student_project.student_id FROM pms_student_project WHERE 
+    pms_student_project.project_id='".$PId."') AND ums_user.Email LIKE '%$Key%'";
 
     $hint="";
     $result = $conn->query($sql);

@@ -165,7 +165,7 @@ Class ProjectDao
     public function getAllYears(){
         $YearList=array();
 
-        $SQL="SELECT * FROM tbl_year";
+        $SQL="SELECT * FROM reg_year";
         $this->_DB->doQuery($SQL);
 
         $rows=$this->_DB->getAllRows();
@@ -190,7 +190,7 @@ Class ProjectDao
     public function getAllTerms(){
         $TermList=array();
 
-        $SQL="SELECT * FROM tbl_term";
+        $SQL="SELECT * FROM reg_term";
         $this->_DB->doQuery($SQL);
 
         $rows=$this->_DB->getAllRows();
@@ -213,7 +213,7 @@ Class ProjectDao
     public function getAllCourses(){
         $CourseList=array();
 
-        $SQL="SELECT * FROM tbl_course";
+        $SQL="SELECT * FROM reg_course";
         $this->_DB->doQuery($SQL);
 
         $rows=$this->_DB->getAllRows();
@@ -241,7 +241,7 @@ Class ProjectDao
     public function getAllDisciplines(){
         $DisciplineList=array();
 
-        $SQL="SELECT * FROM tbl_discipline";
+        $SQL="SELECT * FROM ums_discipline";
         $this->_DB->doQuery($SQL);
 
         $rows=$this->_DB->getAllRows();
@@ -265,9 +265,9 @@ Class ProjectDao
     public function getAllTeachers(){
         $TeacherList=array();
 
-        $SQL="SELECT tbl_user.ID,tbl_user.FirstName,tbl_user.LastName FROM tbl_user 
-        INNER JOIN tbl_user_role ON tbl_user.ID=tbl_user_role.UserID INNER JOIN tbl_role ON tbl_user_role.RoleID=tbl_role.ID 
-        WHERE tbl_role.Name='Teacher'";
+        $SQL="SELECT ums_user.ID,ums_user.FirstName,ums_user.LastName FROM ums_user 
+        INNER JOIN ums_user_role ON ums_user.ID=ums_user_role.UserID INNER JOIN ums_role ON ums_user_role.RoleID=ums_role.ID 
+        WHERE ums_role.Name='Teacher'";
 
         $this->_DB->doQuery($SQL);
 
@@ -289,7 +289,7 @@ Class ProjectDao
 
     //get specific year
     public function getYear($Year){
-        $SQL="SELECT * FROM tbl_year WHERE tbl_year.ID='".$Year."'";
+        $SQL="SELECT * FROM reg_year WHERE reg_year.ID='".$Year."'";
         $this->_DB->doQuery($SQL);
 
         $row=$this->_DB->getTopRow();
@@ -306,7 +306,7 @@ Class ProjectDao
 
     //get specific term
     public function getTerm($Term){
-        $SQL="SELECT * FROM tbl_term WHERE tbl_term.ID='".$Term."'";
+        $SQL="SELECT * FROM reg_term WHERE reg_term.ID='".$Term."'";
         $this->_DB->doQuery($SQL);
 
         $row=$this->_DB->getTopRow();
@@ -323,7 +323,7 @@ Class ProjectDao
 
     //get specific course
     public function getCourse($Course){
-        $SQL="SELECT * FROM tbl_course WHERE tbl_course.ID='".$Course."'";
+        $SQL="SELECT * FROM reg_course WHERE reg_course.ID='".$Course."'";
         $this->_DB->doQuery($SQL);
 
         $row=$this->_DB->getTopRow();
@@ -345,7 +345,7 @@ Class ProjectDao
     
     //get specific Discipline
     public function getDiscipline($Discipline){
-        $SQL="SELECT * FROM tbl_discipline WHERE tbl_discipline.ID='".$Discipline."'";
+        $SQL="SELECT * FROM ums_discipline WHERE ums_discipline.ID='".$Discipline."'";
         $this->_DB->doQuery($SQL);
 
         $row=$this->_DB->getTopRow();
@@ -364,9 +364,9 @@ Class ProjectDao
  
     //get specific Teacher
     public function getTeacher($Teacher){
-        $SQL="SELECT tbl_user.ID, tbl_user.FirstName,tbl_user.LastName FROM tbl_user 
-        INNER JOIN tbl_user_role ON tbl_user.ID=tbl_user_role.UserID INNER JOIN tbl_role ON tbl_user_role.RoleID=tbl_role.ID 
-        WHERE tbl_role.Name='Teacher' AND tbl_user.ID='".$Teacher."'";
+        $SQL="SELECT ums_user.ID, ums_user.FirstName,ums_user.LastName FROM reg_user 
+        INNER JOIN ums_user_role ON ums_user.ID=ums_user_role.UserID INNER JOIN ums_role ON ums_user_role.RoleID=ums_role.ID 
+        WHERE ums_role.Name='Teacher' AND ums_user.ID='".$Teacher."'";
 
         $this->_DB->doQuery($SQL);
 

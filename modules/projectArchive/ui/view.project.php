@@ -266,8 +266,8 @@ include_once COMMON.'class.common.inc';
                 <th>Teacher</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th><img src="./resources/img/edit.ico" alt="Edit" class="table-img"></th>
-                <th><img src="./resources/img/delete.png" alt="Delete" class="table-img"></th>
+                <th><img  alt="Edit" class="table-img"></th>
+                <th><img  alt="Delete" class="table-img"></th>
             </tr>
 
             <!--Table Cells-->

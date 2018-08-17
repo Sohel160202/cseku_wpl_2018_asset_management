@@ -2,7 +2,7 @@
 <?php
 // write dao object for each class
 include_once COMMON.'class.common.project.php';
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 
 class ProjectMemberDao{
     private $_DB;
@@ -95,7 +95,7 @@ class ProjectMemberDao{
     }
 
     public function getStudent($Student){
-        $SQL="SELECT tbl_user.ID,tbl_user.Email,tbl_user.FirstName,tbl_user.LastName FROM tbl_user WHERE tbl_user.ID='".$Student."'";
+        $SQL="SELECT ums_user.ID,ums_user.Email,ums_user.FirstName,ums_user.LastName FROM ums_user WHERE ums_user.ID='".$Student."'";
         $this->_DB->doQuery($SQL);
         $row=$this->_DB->getTopRow();
         $this->_Student=new User();

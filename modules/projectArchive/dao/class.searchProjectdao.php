@@ -2,7 +2,7 @@
 <?php
 // write dao object for each class
 include_once COMMON.'class.common.project.php';
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 
 Class SearchProjectDao
 {
@@ -120,8 +120,8 @@ Class SearchProjectDao
     
     public function getAllStudents(){
         $StudentList=array();
-        $SQL="SELECT tbl_user.ID,tbl_user.Email,tbl_user.FirstName,tbl_user.LastName FROM tbl_user INNER JOIN tbl_user_role ON tbl_user.ID=tbl_user_role.UserID
-              INNER JOIN tbl_role ON tbl_user_role.RoleID=tbl_role.ID WHERE tbl_role.Name='Student'";
+        $SQL="SELECT ums_user.ID,ums_user.Email,ums_user.FirstName,ums_user.LastName FROM ums_user INNER JOIN ums_user_role ON ums_user.ID=ums_user_role.UserID
+              INNER JOIN ums_role ON ums_user_role.RoleID=ums_role.ID WHERE ums_role.Name='Student'";
 
         $this->_DB->doQuery($SQL);
         $rows=$this->_DB->getAllRows();

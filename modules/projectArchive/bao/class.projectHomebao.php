@@ -1,6 +1,6 @@
 <!--Projects Homepage-->
 <?php
-include_once UTILITY.'class.util.php';
+include_once UTILITY.'class.util.inc';
 include_once MODULE_PROJECT.'dao/class.projectdao.php';
 include_once MODULE_PROJECT.'dao/class.projectHomedao.php';
 

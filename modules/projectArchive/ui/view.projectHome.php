@@ -1,7 +1,6 @@
 <?php
-include_once TEMPLATE.'basic/navbar.php';
 include_once 'blade/view.projectHome.blade.php';
-include_once COMMON.'class.common.php';
+include_once COMMON.'class.common.inc';
 include_once COMMON.'class.paginate.php';
 ?>
 
@@ -20,7 +19,7 @@ include_once COMMON.'class.paginate.php';
             <div class="col-lg-3 portfolio-item">
                 <div class="card h-37">
                     <a href="<?php echo PageUtil::$PROJECT_MEMBER.'?id='.$project->getProjectId();?>" class="card-header">
-                        <img class="card-img-top" src="<?php echo $project->getProjectThumbnail();?>" alt="Project"></a>
+                       
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="<?php echo PageUtil::$PROJECT_MEMBER.'?id='.$project->getProjectId();?>"><?php echo $project->getProjectTitle();?></a>
