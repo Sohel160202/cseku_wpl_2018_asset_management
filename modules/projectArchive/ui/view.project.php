@@ -44,17 +44,17 @@ include_once COMMON.'class.common.inc';
                     <label for="year_id" class="control-label col-md-3">Year :</label>
                     <div class="col-md-7">
                         <select name="year_id" id="year_id" class="form-control" required>
-                            <option value="" selected="selected" disabled>Select Year</option>
+                            <option value="" selected="selected" >Select Year</option>
                             <?php
                             $Result=$_ProjectBao->getAllYears();
                             if($Result->getIsSuccess()){
                                 $YearList=$Result->getResultObject();
                                 foreach ($YearList as $year){
                                     ?>
-                                    <option value="<?php echo $year->getYearId();?>" <?php
-                                    if (isset($_GET['edit'])&& $year->getYearId()==$getRow->getProjectYearId()) echo 'selected="selected"';
-                                    elseif (isset($_POST['create'])&&!empty($_POST['year_id'])&&$year->getYearId()==$_POST['year_id']) echo 'selected="selected"'
-                                    ?>><?php echo $year->getYearName();?></option>
+                                    <option value="<?php echo $year->getID();?>" <?php
+                                    if (isset($_GET['edit'])&& $year->getID()==$getRow->getProjectYearId()) echo 'selected="selected"';
+                                    elseif (isset($_POST['create'])&&!empty($_POST['year_id'])&&$year->getID()==$_POST['year_id']) echo 'selected="selected"'
+                                    ?>><?php echo $year->getName();?></option>
                                     <?php
                                 }
                             }else{
@@ -71,17 +71,17 @@ include_once COMMON.'class.common.inc';
                     <label for="term_id" class="control-label col-md-3">Term :</label>
                     <div class="col-md-7">
                         <select name="term_id" id="term_id" class="form-control" required>
-                            <option value="" selected="selected" disabled>Select Term</option>
+                            <option value="" selected="selected" >Select Term</option>
                             <?php
                             $Result=$_ProjectBao->getAllTerms();
                             if($Result->getIsSuccess()) {
                                 $TermList = $Result->getResultObject();
                                 foreach ($TermList as $term){
                                     ?>
-                                    <option value="<?php echo $term->getTermId();?>" <?php
-                                    if (isset($_GET['edit'])&&$term->getTermId()==$getRow->getProjectTermId()) echo 'selected="selected"';
-                                    elseif (isset($_POST['create'])&&!empty($_POST['term_id'])&&$term->getTermId()==$_POST['term_id'])echo 'selected="selected"';
-                                    ?>><?php echo $term->getTermName();?></option>
+                                    <option value="<?php echo $term->getID();?>" <?php
+                                    if (isset($_GET['edit'])&&$term->getID()==$getRow->getProjectTermId()) echo 'selected="selected"';
+                                    elseif (isset($_POST['create'])&&!empty($_POST['term_id'])&&$term->getID()==$_POST['term_id'])echo 'selected="selected"';
+                                    ?>><?php echo $term->getName();?></option>
                                     <?php
                                 }
                             }else{
@@ -98,16 +98,16 @@ include_once COMMON.'class.common.inc';
                     <label for="course_id" class="control-label col-md-3">Course No :</label>
                     <div class="col-md-7">
                         <select name="course_id" id="course_id" class="form-control" onchange="jsFunction(this.value);" required>
-                            <option value="" selected="selected" disabled>Select Course</option>
+                            <option value="" selected="selected" >Select Course</option>
                             <?php
                             $Result=$_ProjectBao->getAllCourses();
                             if($Result->getIsSuccess()){
                                 $CourseList=$Result->getResultObject();
                                 foreach ($CourseList as $course){
                                     ?>
-                                    <option value="<?php echo $course->getCourseId();?>" <?php
-                                    if (isset($_GET['edit'])&&$course->getCourseId()==$getRow->getProjectCourseId()) echo 'selected="selected"';
-                                    elseif (isset($_POST['create'])&&!empty($_POST['course_id'])&&$course->getCourseId()==$_POST['course_id']) echo 'selected="selected"';
+                                    <option value="<?php echo $course->getID();?>" <?php
+                                    if (isset($_GET['edit'])&&$course->getID()==$getRow->getProjectCourseId()) echo 'selected="selected"';
+                                    elseif (isset($_POST['create'])&&!empty($_POST['course_id'])&&$course->getID()==$_POST['course_id']) echo 'selected="selected"';
                                     ?>><?php echo $course->getCourseNo();?></option>
                                     <?php
                                 }
@@ -126,8 +126,8 @@ include_once COMMON.'class.common.inc';
                     <div class="col-md-7">
                         <span id="courseTitle" class="form-control">
                             <?php
-                            if(isset($_GET['edit'])) echo $Result=$_ProjectBao->getCourse($getRow->getProjectCourseId())->getResultObject()->getCourseTitle();
-                            elseif (isset($_POST['create'])&&!empty($_POST['course_id'])) echo $Result=$_ProjectBao->getCourse($_POST['course_id'])->getResultObject()->getCourseTitle();
+                            if(isset($_GET['edit'])) echo $Result=$_ProjectBao->getCourse($getRow->getProjectCourseId())->getResultObject()->getTitle();
+                            elseif (isset($_POST['create'])&&!empty($_POST['course_id'])) echo $Result=$_ProjectBao->getCourse($_POST['course_id'])->getResultObject()->getTitle();
                             ?>
                         </span>
                     </div>
@@ -138,17 +138,17 @@ include_once COMMON.'class.common.inc';
                     <label for="discipline_id" class="control-label col-md-3">Discipline :</label>
                     <div class="col-md-7">
                         <select name="discipline_id" id="discipline_id" class="form-control" required>
-                            <option value="" selected="selected" disabled>Select Discipline</option>
+                            <option value="" selected="selected" >Select Discipline</option>
                             <?php
                             $Result=$_ProjectBao->getAllDisciplines();
                             if($Result->getIsSuccess()){
                                 $DisciplineList=$Result->getResultObject();
                                 foreach ($DisciplineList as $discipline){
                                     ?>
-                                    <option value="<?php echo $discipline->getDisciplineId();?>"<?php
-                                    if (isset($_GET['edit'])&&$discipline->getDisciplineId()==$getRow->getProjectDisciplineId()) echo 'selected="selected"';
-                                    elseif (isset($_POST['create'])&&!empty($_POST['discipline_id'])&&$discipline->getDisciplineId()==$_POST['discipline_id']) echo 'selected="selected"';
-                                    ?>><?php echo $discipline->getDisciplineName();?></option>
+                                    <option value="<?php echo $discipline->getID();?>"<?php
+                                    if (isset($_GET['edit'])&&$discipline->getID()==$getRow->getProjectDisciplineId()) echo 'selected="selected"';
+                                    elseif (isset($_POST['create'])&&!empty($_POST['discipline_id'])&&$discipline->getID()==$_POST['discipline_id']) echo 'selected="selected"';
+                                    ?>><?php echo $discipline->getName();?></option>
                                     <?php
                                 }
                             }
@@ -166,7 +166,7 @@ include_once COMMON.'class.common.inc';
                     <label for="teacher_id" class="control-label col-md-3">Teacher :</label>
                     <div class="col-md-7">
                         <select name="teacher_id" id="teacher_id" class="form-control" required>
-                            <option value="" selected="selected" disabled>Select Teacher</option>
+                            <option value="" selected="selected" >Select Teacher</option>
                             <?php
                             $Result=$_ProjectBao->getAllTeachers();
                             if($Result->getIsSuccess()){
@@ -266,8 +266,8 @@ include_once COMMON.'class.common.inc';
                 <th>Teacher</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th><img  alt="Edit" class="table-img"></th>
-                <th><img  alt="Delete" class="table-img"></th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
 
             <!--Table Cells-->
@@ -279,7 +279,7 @@ include_once COMMON.'class.common.inc';
                 foreach ($ProjectList as $project) {
                     ?>
                     <tr>
-                        <td><a href="project_member.php?id=<?php echo $project->getProjectId();?>"><img src="<?php echo $project->getProjectThumbnail();?>" alt="Icon" class="table-img"><?php
+                        <td><a href="project_member.php?id=<?php echo $project->getProjectId();?>"><?php
                                 echo ' '.$project->getProjectTitle(); ?></a></td>
 
                         <td><?php if(strlen($project->getProjectDescription())>50){
@@ -290,13 +290,13 @@ include_once COMMON.'class.common.inc';
 
                         <td class="table-cell"><?php echo $project->getProjectLanguage();?></td>
 
-                        <td class="table-cell"><?php echo $Result=$_ProjectBao->getYear($project->getProjectYearId())->getResultObject()->getYearName();?></td>
+                        <td class="table-cell"><?php echo $Result=$_ProjectBao->getYear($project->getProjectYearId())->getResultObject()->getName();?></td>
 
-                        <td class="table-cell"><?php echo $Result=$_ProjectBao->getTerm($project->getProjectTermId())->getResultObject()->getTermName();?></td>
+                        <td class="table-cell"><?php echo $Result=$_ProjectBao->getTerm($project->getProjectTermId())->getResultObject()->getName();?></td>
 
-                        <td><?php echo $Result=$_ProjectBao->getCourse($project->getProjectCourseId())->getResultObject()->getCourseTitle();?></td>
+                        <td><?php echo $Result=$_ProjectBao->getCourse($project->getProjectCourseId())->getResultObject()->getTitle();?></td>
 
-                        <td><?php echo $Result=$_ProjectBao->getDiscipline($project->getProjectDisciplineId())->getResultObject()->getDisciplineName();?></td>
+                        <td><?php echo $Result=$_ProjectBao->getDiscipline($project->getProjectDisciplineId())->getResultObject()->getName();?></td>
 
                         <td class="table-cell"><?php $Result=$_ProjectBao->getTeacher($project->getProjectTeacherId())->getResultObject();
                         echo $Result->getFirstName().' '.$Result->getLastName();?></td>

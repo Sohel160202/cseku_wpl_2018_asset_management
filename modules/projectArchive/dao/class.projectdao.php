@@ -173,8 +173,8 @@ Class ProjectDao
         foreach ($rows as $row){
 
             $this->_Year=new Year();
-            $this->_Year->setYearId($row['ID']);
-            $this->_Year->setYearName($row['Name']);
+            $this->_Year->setId($row['ID']);
+            $this->_Year->setName($row['Name']);
 
             $YearList[]=$this->_Year;
         }
@@ -196,8 +196,8 @@ Class ProjectDao
         $rows=$this->_DB->getAllRows();
         foreach ($rows as $row){
             $this->_Term=new Term();
-            $this->_Term->setTermId($row['ID']);
-            $this->_Term->setTermName($row['Name']);
+            $this->_Term->setId($row['ID']);
+            $this->_Term->setName($row['Name']);
 
             $TermList[]=$this->_Term;
         }
@@ -219,13 +219,13 @@ Class ProjectDao
         $rows=$this->_DB->getAllRows();
         foreach ($rows as $row){
             $this->_Course=new Course();
-            $this->_Course->setCourseId($row['ID']);
+            $this->_Course->setID($row['ID']);
             $this->_Course->setCourseNo($row['CourseNo']);
-            $this->_Course->setCourseTitle($row['Title']);
-            $this->_Course->setCourseCredit($row['Credit']);
+            $this->_Course->setTitle($row['Title']);
+            $this->_Course->setCredit($row['Credit']);
             $this->_Course->setCourseTypeId($row['CourseTypeID']);
-            $this->_Course->setCourseDisciplineId($row['DisciplineID']);
-            $this->_Course->setCourseIsDeleted($row['IsDeleted']);
+            $this->_Course->setDisciplineId($row['DisciplineID']);
+            $this->_Course->setIsDeleted($row['IsDeleted']);
 
             $CourseList[]=$this->_Course;
         }
@@ -247,10 +247,10 @@ Class ProjectDao
         $rows=$this->_DB->getAllRows();
         foreach ($rows as $row){
             $this->_Discipline=new Discipline();
-            $this->_Discipline->setDisciplineId($row['ID']);
-            $this->_Discipline->setDisciplineName($row['Name']);
-            $this->_Discipline->setDisciplineShortCode($row['ShortCode']);
-            $this->_Discipline->setDisciplineSchoolId($row['SchoolID']);
+            $this->_Discipline->setID($row['ID']);
+            $this->_Discipline->setName($row['Name']);
+            $this->_Discipline->setShortCode($row['ShortCode']);
+            $this->_Discipline->setSchool($row['SchoolID']);
 
             $DisciplineList[]=$this->_Discipline;
         }
@@ -294,8 +294,8 @@ Class ProjectDao
 
         $row=$this->_DB->getTopRow();
         $this->_Year=new Year();
-        $this->_Year->setYearId($row['ID']);
-        $this->_Year->setYearName($row['Name']);
+        $this->_Year->setID($row['ID']);
+        $this->_Year->setName($row['Name']);
 
         $Result=new Result();
         $Result->setIsSuccess(1);
@@ -311,8 +311,8 @@ Class ProjectDao
 
         $row=$this->_DB->getTopRow();
         $this->_Term=new Term();
-        $this->_Term->setTermId($row['ID']);
-        $this->_Term->setTermName($row['Name']);
+        $this->_Term->setID($row['ID']);
+        $this->_Term->setName($row['Name']);
 
         $Result=new Result();
         $Result->setIsSuccess(1);
@@ -328,13 +328,13 @@ Class ProjectDao
 
         $row=$this->_DB->getTopRow();
         $this->_Course=new Course();
-        $this->_Course->setCourseId($row['ID']);
+        $this->_Course->setID($row['ID']);
         $this->_Course->setCourseNo($row['CourseNo']);
-        $this->_Course->setCourseTitle($row['Title']);
-        $this->_Course->setCourseCredit($row['Credit']);
-        $this->_Course->setCourseTypeId($row['CourseTypeID']);
-        $this->_Course->setCourseDisciplineId($row['DisciplineID']);
-        $this->_Course->setCourseIsDeleted($row['IsDeleted']);
+        $this->_Course->setTitle($row['Title']);
+        $this->_Course->setCredit($row['Credit']);
+        $this->_Course->setCourseTypeID($row['CourseTypeID']);
+        $this->_Course->setDisciplineID($row['DisciplineID']);
+        $this->_Course->setIsDeleted($row['IsDeleted']);
 
         $Result=new Result();
         $Result->setIsSuccess(1);
@@ -350,10 +350,10 @@ Class ProjectDao
 
         $row=$this->_DB->getTopRow();
         $this->_Discipline=new Discipline();
-        $this->_Discipline->setDisciplineId($row['ID']);
-        $this->_Discipline->setDisciplineName($row['Name']);
-        $this->_Discipline->setDisciplineShortCode($row['ShortCode']);
-        $this->_Discipline->setDisciplineSchoolId($row['SchoolID']);
+        $this->_Discipline->setID($row['ID']);
+        $this->_Discipline->setName($row['Name']);
+        $this->_Discipline->setShortCode($row['ShortCode']);
+        $this->_Discipline->setSchool($row['SchoolID']);
 
         $Result=new Result();
         $Result->setIsSuccess(1);
@@ -364,7 +364,7 @@ Class ProjectDao
  
     //get specific Teacher
     public function getTeacher($Teacher){
-        $SQL="SELECT ums_user.ID, ums_user.FirstName,ums_user.LastName FROM reg_user 
+        $SQL="SELECT ums_user.ID, ums_user.FirstName,ums_user.LastName FROM ums_user 
         INNER JOIN ums_user_role ON ums_user.ID=ums_user_role.UserID INNER JOIN ums_role ON ums_user_role.RoleID=ums_role.ID 
         WHERE ums_role.Name='Teacher' AND ums_user.ID='".$Teacher."'";
 
