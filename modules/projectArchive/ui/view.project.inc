@@ -121,7 +121,7 @@ include_once COMMON.'class.common.inc';
                 </div>
 
                 <!--            Course Title-->
-                <div class="form-group">
+                <div class="form-group" hidden="">
                     <label for="courseTitle" class="control-label col-md-3">Course Title:</label>
                     <div class="col-md-7">
                         <span id="courseTitle" class="form-control">
