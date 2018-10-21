@@ -9,7 +9,7 @@ include_once COMMON.'class.paginate.inc';
     <!--Projects List-->
     <div class="row">
         <?php
-        $results_per_page=8;
+        $results_per_page=12;
 
         $_Paginate=new Paginate();
         $ProjectList=$_Paginate->loadPaginatedData($_ProjectHomeBao->getLimitProject($_Paginate->paginationInitial(),$results_per_page));
@@ -19,6 +19,7 @@ include_once COMMON.'class.paginate.inc';
             <div class="col-lg-3 portfolio-item">
                 <div class="card h-37">
                     <a href="<?php echo PageUtil::$PROJECT_MEMBER.'?id='.$project->getProjectId();?>" class="card-header">
+                         <img class="card-img-top" height="100" width="100" src="<?php echo $project->getProjectThumbnail();?>" alt="Project"></a>
                        
                     <div class="card-body">
                         <h4 class="card-title">

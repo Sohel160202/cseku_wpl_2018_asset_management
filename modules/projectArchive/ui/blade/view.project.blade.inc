@@ -24,9 +24,9 @@ if(isset($_POST['create']))
         $Project->setProjectDisciplineId($_POST['discipline_id']);
         $Project->setProjectTeacherId($_POST['teacher_id']);
 
-       //$Upload=$_ProjectBao->uploadThumbnail($Project);
-        //check if the thumbnail has been uploaded
-        //if($Upload['uploaded']==1){
+       $Upload=$_ProjectBao->uploadThumbnail($Project);
+       // check if the thumbnail has been uploaded
+        if($Upload['uploaded']==1){
             $Project->setProjectThumbnail($_DB->secureInput($Upload['target_file']));
             $Result=$_ProjectBao->createProject($Project);
 
@@ -34,7 +34,7 @@ if(isset($_POST['create']))
                 echo '<strong>'.$Result->getResultObject().'</strong>';
                 header("Location:".PageUtil::$PROJECT);
             }
-        //}
+        }
     }
 }
 
@@ -66,7 +66,7 @@ if (isset($_POST['update'])){
 
         $Upload=$_ProjectBao->uploadThumbnail($Project);
         //check if the thumbnail has been uploaded
-       // if($Upload['uploaded']==1){
+        if($Upload['uploaded']==1){
             $Project->setProjectThumbnail($_DB->secureInput($Upload['target_file']));
             $Result=$_ProjectBao->updateProject($Project);
 
@@ -74,7 +74,7 @@ if (isset($_POST['update'])){
                 echo '<strong>'.$Result->getResultObject().'</strong>';
                 header("Location:".PageUtil::$PROJECT);
             }
-        //}
+        }
     }
 }
 

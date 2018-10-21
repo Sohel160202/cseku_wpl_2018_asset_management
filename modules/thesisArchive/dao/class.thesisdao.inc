@@ -1,14 +1,15 @@
-<!--Project CRUD-->
+<!--Thesis CRUD-->
 <?php
 // write dao object for each class
+include_once COMMON.'class.common.thesis.inc';
 include_once COMMON.'class.common.project.inc';
 include_once UTILITY.'class.util.inc';
 
-Class ProjectDao
+Class ThesisDao
 {
 
     private $_DB;
-    private $_Project;
+    private $_Thesis;
     private $_Year;
     private $_Term;
     private $_Course;
@@ -19,29 +20,28 @@ Class ProjectDao
     {
 
         $this->_DB = DBUtil::getInstance();
-        $this->_Project = new Project();
+        $this->_Thesis = new Thesis();
         $this->_Year=new Year();
         $this->_Term=new Term();
         $this->_Course=new Course();
         $this->_Teacher=new User();
     }
 
-    //create new project
-    public function createProject($Project){
+    //create new thesis
+    public function createThesis($Thesis){
 
-        $ID=$Project->getProjectId();
-        $Thumbnail=$Project->getProjectThumbnail();
-        $Title=$Project->getProjectTitle();
-        $Description=$Project->getProjectDescription();
-        $Language=$Project->getProjectLanguage();
-        $YearId=$Project->getProjectYearId();
-        $TermId=$Project->getProjectTermId();
-        $CourseId=$Project->getProjectCourseId();
-        $DisciplineId=$Project->getProjectDisciplineId();
-        $TeacherId=$Project->getProjectTeacherId();
+        $ID=$Thesis->getThesisId();
+        $Thumbnail=$Thesis->getThesisThumbnail();
+        $Title=$Thesis->getThesisTitle();
+        $Description=$Thesis->getThesisDescription();
+        $PDFLink=$Thesis->getThesisPDFLink();
+        $YearId=$Thesis->getThesisYearId();
+        $TermId=$Thesis->getThesisTermId();
+        $CourseId=$Thesis->getThesisCourseId();
+        $DisciplineId=$Thesis->getThesisDisciplineId();
 
-        $SQL = "INSERT INTO pms_project VALUES('$ID','$Thumbnail','$Title','$Description','$Language','$YearId','$TermId','$CourseId','$DisciplineId',
-        '$TeacherId',CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP )";
+        $SQL = "INSERT INTO tms_thesis VALUES('$ID','$Thumbnail','$Title','$PDFLink','$Description','$YearId','$TermId','$CourseId','$DisciplineId',
+                CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP )";
 
         $SQL = $this->_DB->doQuery($SQL);
 
@@ -52,8 +52,65 @@ Class ProjectDao
         return $Result;
     }
 
-    //upload project thumbnails
-    public function uploadThumbnail($Project)
+    //upload thesis report
+    public function uploadReport($Thesis)
+    {
+        $target_dir = './resources/pdf/report/';
+        $target_file = $target_dir . basename($_FILES['report']['name']);
+        $fileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        if (!empty($_FILES['report']['tmp_name'])) {
+            $uploaded = 1;
+
+            if (file_exists($target_file)) {
+                echo '<br>Sorry, file already exists';
+                $uploaded = 0;
+            }
+
+            if ($fileType != 'pdf') {
+                echo '<br>Sorry, only pdf file is allowed';
+                $uploaded = 0;
+            }
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploaded == 0) {
+                echo "<br>Sorry, your file was not uploaded.";
+                // if everything is ok, try to upload file
+            } else {
+                if(isset($_POST['update'])){
+                    $del_dir=$_POST['reportsrc'];
+                    unlink($del_dir);
+                }
+                if (move_uploaded_file($_FILES["report"]["tmp_name"], $target_dir.$Thesis->getThesisTitle().'.'.$fileType)) {
+                    $Upload = array();
+                    //returns a boolean value
+                    $Upload['uploaded'] = $uploaded;
+                    //returns the directory of the uploaded file
+                    $Upload['target_file'] = $target_dir.$Thesis->getThesisTitle().'.'.$fileType;
+                    return $Upload;
+                } else {
+                    echo "<br>Sorry, there was an error uploading your file.";
+                }
+            }
+        } else {
+            if (!isset($_POST['update'])){
+                echo "<br>Cannot upload the file.<br>Check file size.";
+            }else{
+                $Upload['uploaded']=1;
+                $Upload['target_file']=$_POST['reportsrc'];
+                return $Upload;
+            }
+        }
+    }
+
+    //delete thesis report
+    public function deleteReport($Thesis){
+        $del_dir=$Thesis->getThesisPDFLink();
+        unlink($del_dir);
+
+        return true;
+    }
+
+    //upload thesis thumbnails
+    public function uploadThumbnail($Thesis)
     {
         $target_dir = './resources/img/thumbnails/';
         $target_file = $target_dir . basename($_FILES['thumbnail']['name']);
@@ -63,7 +120,7 @@ Class ProjectDao
             $uploaded = 1;
 
             if ($size !== false) {
-                echo 'File is an image - '.$size['mime'].'.';
+                //echo 'File is an image - '.$size['mime'].'.';
                 $uploaded = 1;
             } else {
                 echo '<br>File is not an image';
@@ -75,9 +132,9 @@ Class ProjectDao
                 $uploaded = 0;
             }
 
-            if ($_FILES['thumbnail']['size'] > 50000000) {
+            if ($_FILES['thumbnail']['size'] > 50000000000000) {
                 echo '<br>Sorry, your file is too large';
-             $uploaded = 0;
+                $uploaded = 0;
             }
 
             if ($fileType != 'jpg' && $fileType != 'png' && $fileType != 'jpeg' && $fileType != 'ico') {
@@ -93,12 +150,12 @@ Class ProjectDao
                     $del_dir=$_POST['thumbnailsrc'];
                     unlink($del_dir);
                 }
-                if (move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_dir.$Project->getProjectTitle().'.'.$fileType)) {
+                if (move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_dir.$Thesis->getThesisTitle().'.'.$fileType)) {
                     $Upload = array();
                     //returns a boolean value
                     $Upload['uploaded'] = $uploaded;
                     //returns the directory of the uploaded file
-                    $Upload['target_file'] = $target_dir.$Project->getProjectTitle().'.'.$fileType;
+                    $Upload['target_file'] = $target_dir.$Thesis->getThesisTitle().'.'.$fileType;
                     return $Upload;
                 } else {
                     echo "<br>Sorry, there was an error uploading your file.";
@@ -115,39 +172,38 @@ Class ProjectDao
         }
     }
 
-    //delete project thumbnail
-    public function deleteThumbnail($Project){
-        $del_dir=$Project->getProjectThumbnail();
+    //delete thesis thumbnail
+    public function deleteThumbnail($Thesis){
+        $del_dir=$Thesis->getThesisThumbnail();
         unlink($del_dir);
 
         return true;
     }
 
-    //get All projects
-    public function getAllProjects(){
-        $ProjectList=array();
+    //get All thesiss
+    public function getAllThesis(){
+        $ThesisList=array();
 
-        $SQL="SELECT * FROM pms_project ORDER BY pms_project.created_at";
+        $SQL="SELECT * FROM tms_thesis ORDER BY tms_thesis.created_at";
         $this->_DB->doQuery($SQL);
 
         $rows=$this->_DB->getAllRows();
 
         foreach ($rows as $row) {
-            $this->_Project=new Project();
-            $this->_Project->setProjectId($row['id']);
-            $this->_Project->setProjectThumbnail($row['thumbnail']);
-            $this->_Project->setProjectTitle($row['title']);
-            $this->_Project->setProjectDescription($row['description']);
-            $this->_Project->setProjectLanguage($row['language']);
-            $this->_Project->setProjectYearId($row['year_id']);
-            $this->_Project->setProjectTermId($row['term_id']);
-            $this->_Project->setProjectCourseId($row['course_id']);
-            $this->_Project->setProjectDisciplineId($row['discipline_id']);
-            $this->_Project->setProjectTeacherId($row['teacher_id']);
-            $this->_Project->setProjectCreatedAt($row['created_at']);
-            $this->_Project->setProjectUpdatedAt($row['updated_at']);
+            $this->_Thesis=new Thesis();
+            $this->_Thesis->setThesisId($row['id']);
+            $this->_Thesis->setThesisThumbnail($row['thumbnail']);
+            $this->_Thesis->setThesisTitle($row['title']);
+            $this->_Thesis->setThesisDescription($row['description']);
+            $this->_Thesis->setThesisPDFLink($row['pdf_link']);
+            $this->_Thesis->setThesisYearId($row['year_id']);
+            $this->_Thesis->setThesisTermId($row['term_id']);
+            $this->_Thesis->setThesisCourseId($row['course_id']);
+            $this->_Thesis->setThesisDisciplineId($row['discipline_id']);
+            $this->_Thesis->setThesisCreatedAt($row['created_at']);
+            $this->_Thesis->setThesisUpdatedAt($row['updated_at']);
 
-            $ProjectList[]=$this->_Project;
+            $ThesisList[]=$this->_Thesis;
         }
 
         //todo: LOG util with level of log
@@ -155,7 +211,7 @@ Class ProjectDao
 
         $Result = new Result();
         $Result->setIsSuccess(1);
-        $Result->setResultObject($ProjectList);
+        $Result->setResultObject($ThesisList);
 
         return $Result;
 
@@ -261,7 +317,7 @@ Class ProjectDao
         return $Result;
     }
 
-    //get All Teachers
+     //get All Teachers
     public function getAllTeachers(){
         $TeacherList=array();
 
@@ -286,7 +342,7 @@ Class ProjectDao
 
         return $Result;
     }
-
+    
     //get specific year
     public function getYear($Year){
         $SQL="SELECT * FROM reg_year WHERE reg_year.ID='".$Year."'";
@@ -383,41 +439,40 @@ Class ProjectDao
         return $Result;
     }
     
-    //get specific project
-    public function getProject($Project){
+    //get specific thesis
+    public function getThesis($Thesis){
 
-        $SQL="SELECT * FROM pms_project WHERE pms_project.id='".$Project->getProjectId()."'";
+        $SQL="SELECT * FROM tms_thesis WHERE tms_thesis.id='".$Thesis->getThesisId()."'";
         $this->_DB->doQuery($SQL);
 
         $row=$this->_DB->getTopRow();
-        $this->_Project=new Project();
-        $this->_Project->setProjectId($row['id']);
-        $this->_Project->setProjectThumbnail($row['thumbnail']);
-        $this->_Project->setProjectTitle($row['title']);
-        $this->_Project->setProjectDescription($row['description']);
-        $this->_Project->setProjectLanguage($row['language']);
-        $this->_Project->setProjectYearId($row['year_id']);
-        $this->_Project->setProjectTermId($row['term_id']);
-        $this->_Project->setProjectCourseId($row['course_id']);
-        $this->_Project->setProjectDisciplineId($row['discipline_id']);
-        $this->_Project->setProjectTeacherId($row['teacher_id']);
-        $this->_Project->setProjectCreatedAt($row['created_at']);
-        $this->_Project->setProjectUpdatedAt($row['updated_at']);
+        $this->_Thesis=new Thesis();
+        $this->_Thesis->setThesisId($row['id']);
+        $this->_Thesis->setThesisThumbnail($row['thumbnail']);
+        $this->_Thesis->setThesisTitle($row['title']);
+        $this->_Thesis->setThesisDescription($row['description']);
+        $this->_Thesis->setThesisPDFLink($row['pdf_link']);
+        $this->_Thesis->setThesisYearId($row['year_id']);
+        $this->_Thesis->setThesisTermId($row['term_id']);
+        $this->_Thesis->setThesisCourseId($row['course_id']);
+        $this->_Thesis->setThesisDisciplineId($row['discipline_id']);
+        $this->_Thesis->setThesisCreatedAt($row['created_at']);
+        $this->_Thesis->setThesisUpdatedAt($row['updated_at']);
 
         $Result=new Result();
         $Result->setIsSuccess(1);
-        $Result->setResultObject($this->_Project);
+        $Result->setResultObject($this->_Thesis);
         
         return $Result;
     }
     
-    //update previous project
-    public function updateProject($Project){
-        $SQL="UPDATE pms_project SET pms_project.thumbnail='".$Project->getProjectThumbnail()."', pms_project.title='".$Project->getProjectTitle()."',pms_project.description='".$Project->getProjectDescription()."',
-        pms_project.language='".$Project->getProjectLanguage()."',pms_project.year_id='".$Project->getProjectYearId()."',
-        pms_project.term_id='".$Project->getProjectTermId()."',pms_project.course_id='".$Project->getProjectCourseId()."',
-        pms_project.discipline_id='".$Project->getProjectDisciplineId()."',pms_project.teacher_id='".$Project->getProjectTeacherId()."',
-        pms_project.updated_at=CURRENT_TIMESTAMP WHERE pms_project.id='".$Project->getProjectId()."'";
+    //update previous thesis
+    public function updateThesis($Thesis){
+        $SQL="UPDATE tms_thesis SET tms_thesis.thumbnail='".$Thesis->getThesisThumbnail()."', tms_thesis.title='".$Thesis->getThesisTitle()."',tms_thesis.description='".$Thesis->getThesisDescription()."',
+        tms_thesis.pdf_link='".$Thesis->getThesisPDFLink()."',tms_thesis.year_id='".$Thesis->getThesisYearId()."',
+        tms_thesis.term_id='".$Thesis->getThesisTermId()."',tms_thesis.course_id='".$Thesis->getThesisCourseId()."',
+        tms_thesis.discipline_id='".$Thesis->getThesisDisciplineId()."',
+        tms_thesis.updated_at=CURRENT_TIMESTAMP WHERE tms_thesis.id='".$Thesis->getThesisId()."'";
 
         $SQL=$this->_DB->doQuery($SQL);
 
@@ -428,9 +483,9 @@ Class ProjectDao
         return $Result;
     }
     
-    //delete specific project
-    public function deleteProject($Project){
-        $SQL="DELETE FROM pms_project WHERE pms_project.id='".$Project->getProjectId()."'";
+    //delete specific thesis
+    public function deleteThesis($Thesis){
+        $SQL="DELETE FROM tms_thesis WHERE tms_thesis.id='".$Thesis->getThesisId()."'";
         $SQL=$this->_DB->doQuery($SQL);
 
         $Result=new Result();

@@ -201,7 +201,7 @@ include_once COMMON.'class.common.inc';
                     </div>
                 </div>
 
-                <!--Thumbnail Src-->
+               <!--Thumbnail Src-->
                 <div class="form-group">
                     <div class="col-md-7">
                         <input type="hidden" name="thumbnailsrc" id="thumbnailsrc" class="form-control" value="<?php
@@ -209,6 +209,25 @@ include_once COMMON.'class.common.inc';
                         ?>">
                     </div>
                 </div>
+
+                <!--Thumbnail-->
+                <div class="form-group">
+                    <label for="thumbnail" class="control-label col-md-3">Thumbnail :</label>
+                    <div class="col-md-4">
+                        <input type="file" name="thumbnail" onchange="previewImage(this);" id="thumbnail"<?php if (!isset($_GET['edit'])) echo 'required';?>>
+                    </div>
+                    <div class="col-md-1 thumbnail" id="divPreview" <?php if(!isset($_GET['edit'])) echo 'style="display: none"'; ?>>
+                        <img id="preview" src="<?php
+                        if (isset($_GET['edit'])) echo $getRow->getProjectThumbnail();
+                        elseif (isset($_POST['create'])) echo $_POST['thumbnail'];
+                        ?>">
+                    </div>
+                        
+                    
+                </div>
+
+                <br>
+
 
 
                 <br>
@@ -251,8 +270,8 @@ include_once COMMON.'class.common.inc';
                 <th>Teacher</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th><img src="./resources/img/edit.ico" alt="Edit" class="table-img"></th>
-                <th><img src="./resources/img/delete.png" alt="Delete" class="table-img"></th>
+                <th><img src="./resources/img/edit.ico" alt="Edit" height="40" width="40"  class="table-img"></th>
+                <th><img src="./resources/img/delete.png" alt="Delete" height="40" width="40" class="table-img"></th>
             </tr>
 
             <!--Table Cells-->
@@ -264,7 +283,7 @@ include_once COMMON.'class.common.inc';
                 foreach ($ProjectList as $project) {
                     ?>
                     <tr>
-                        <td><a href="project_member.php?id=<?php echo $project->getProjectId();?>"><img src="<?php echo $project->getProjectThumbnail();?>" alt="" class="table-img"><?php
+                        <td><a href="project_member.php?id=<?php echo $project->getProjectId();?>"><img src="<?php echo $project->getProjectThumbnail();?>" alt="" height="100" width="100" class="img-thumbnail"><?php
                                 echo ' '.$project->getProjectTitle(); ?></a></td>
 
                         <td><?php if(strlen($project->getProjectDescription())>50){
