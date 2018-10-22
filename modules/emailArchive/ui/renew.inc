@@ -1,6 +1,6 @@
 <?php
-$EID=$_GET['eid'];
-$EXP=$_GET['exp'];
+$EID=$_POST['eid'];
+$EXP=$_POST['exp'];
 
 $servername = "localhost";
 $username = "root";

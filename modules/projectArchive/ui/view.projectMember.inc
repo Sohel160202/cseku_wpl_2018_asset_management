@@ -391,7 +391,7 @@ if (isset($_SESSION['login.php'])) {
 
             }
         };
-        xhttp.open("GET","./modules/projectArchive/ui/contribution.php?pid="+projId+"&uid="+userId+"&conval="+contribution,true);
+        xhttp.open("GET","./modules/projectArchive/ui/contribution.inc?pid="+projId+"&uid="+userId+"&conval="+contribution,true);
         xhttp.send();
     }
 </script>

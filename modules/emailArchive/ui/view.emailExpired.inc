@@ -142,7 +142,7 @@ include_once COMMON.'class.paginate.inc';
         var email=parent.childNodes[17];
         var id=email.childNodes[1];
         var emailId=id.value;
-        xhttp=new XMLHttpRequest();
+        var xhttp=new XMLHttpRequest();
         xhttp.onreadystatechange=function () {
             if(this.readyState==4&&this.status==200){
                 spn.innerText=this.responseText;
@@ -151,24 +151,12 @@ include_once COMMON.'class.paginate.inc';
                 var expireDate=new Date(this.responseText).getTime();
                 var validity=expireDate-currentDate;
                 var validityDays = Math.floor(validity/ (1000 * 60 * 60 * 24));
-                if (validityDays<0){
-                    parent.className='table-cell alert-danger';
-                }
-                else{
-                    if (validityDays>90){
-                        parent.className='table-cell alert-success';
-                    }
-                    else if(validityDays>30){
-                        parent.className='table-cell alert-warning';
-                    }
-                    else if(validityDays>-1){
-                        parent.className='table-cell alert-danger';
-                    }
-                    parent.style.display='none';
-                }
+                
             }
         };
-        xhttp.open("GET","./modules/emailArchive/ui/renew.php?eid="+emailId+"&exp="+expireAt,true);
+
+        console.log(expireAt);
+        xhttp.open("POST","./modules/emailArchive/ui/renew.inc?eid="+emailId+"&exp="+expireAt,true);
         xhttp.send();
     }
 </script>

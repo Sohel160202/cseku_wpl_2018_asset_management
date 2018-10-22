@@ -5,12 +5,8 @@ include_once COMMON.'class.common.inc';
 
 <div class="container">
     <div class="tab myPanel">
-        <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'Asset')">
-            Add Asset
-        </button>
-        <button class="tablinks" onclick="openTab(event, 'AssetType')">
-            Add Asset Type
-        </button>
+    
+      
     </div>
 
     <!--Asset-->
@@ -279,7 +275,7 @@ include_once COMMON.'class.common.inc';
         </div>
     </div>
 
-    <!--Asset Type-->
+    <!--Asset Type
     <div id="AssetType" class="tabcontent myPanel col-md-12">
         <br>
         <div class="col-md-8 col-md-offset-2">
@@ -288,17 +284,17 @@ include_once COMMON.'class.common.inc';
                     <strong>&nbsp;Add Asset Type</strong>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
+                    <div class="form-horizontal"-->
 
-                        <!--Type-->
+                        <!--Type-
                         <div class="form-group">
                             <label for="assetType" class="col-md-3 control-label">Type :</label>
                             <div class="col-md-6">
                                 <input id="assetType" type="text" class="form-control" name="assetType" required>
                             </div>
-                        </div>
+                        </div-->
 
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <div class="col-md-6 col-md-offset-5">
                                 <button type="button" id="btnAssetType" class="btn btn-primary col-md-3" onclick="typeJS();">Add</button>
                                 <span id="type-success" hidden class="text-success">&nbsp;&nbsp;&nbsp;&nbsp;Successfully created</span>
@@ -311,7 +307,7 @@ include_once COMMON.'class.common.inc';
             </div>
         </div>
     </div>
-</div>
+</div-->
 <script>
     //Tab Selection
     function openTab(evt, cityName) {
@@ -326,7 +322,7 @@ include_once COMMON.'class.common.inc';
         }
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
-    }
+    } 
 
     //Select Default Tab on refresh
     document.getElementById("defaultOpen").click();
