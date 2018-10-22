@@ -327,6 +327,7 @@ class PageUtil{
     public static $FEEDBACK='feedback.php';
 
     public static $HOME='home.php';
+    public static $HOME_PAGE='home_page.php';
 
     public static $QUESTION='question.php';
     public static $QUESTION_SEARCH='question_search.php';
@@ -386,6 +387,7 @@ class PageUtil{
     public static $EMAIL='email.php';
     public static $EMAIL_RENEW="email_renew.php";
     public static $EMAIL_EXPIRED="email_expired.php";
+    public static $EMAIL_RELICENSE="email_relicense.php";
 
     //Asset Archive
     public static $ASSET='asset.php';
@@ -394,6 +396,7 @@ class PageUtil{
     public static $ASSET_DETAILS='asset_details.php';
     public static $ASSET_LEND='asset_lend.php';
     public static $ASSET_RETURN='asset_return.php'; 
+    public static $ASSET_SEARCH = 'asset_search.php';
    
 }
 
@@ -438,6 +441,7 @@ class RouteUtil{
 
          self::$s_Routes[PageUtil::$HOME]             =   "modules/dashboard/ui/view.home.inc";
          self::$s_Routes[PageUtil::$LOGIN]            =   "modules/dashboard/ui/view.login.inc";
+         self::$s_Routes[PageUtil::$HOME_PAGE]        ="/modules/dashboard/ui/view.homePage.inc";
          self::$s_Routes[PageUtil::$LOGOUT]            =   "modules/dashboard/ui/view.logout.inc";
 
          self::$s_Routes[PageUtil::$ROLE]   =   "modules/user/ui/view.role.inc";
@@ -537,29 +541,33 @@ class RouteUtil{
          self::$s_Routes[PageUtil::$JOB]  =   "modules/job/ui/view.job.inc";
 
           //Project Archive Routes
-       self::$s_Routes[PageUtil::$PROJECT]="/modules/projectArchive/ui/view.project.php";
-       self::$s_Routes[PageUtil::$PROJECT_MEMBER]="/modules/projectArchive/ui/view.projectMember.php";
-       self::$s_Routes[PageUtil::$PROJECT_HOME]="/modules/projectArchive/ui/view.projectHome.php";
-       self::$s_Routes[PageUtil::$PROJECT_SEARCH]="/modules/projectArchive/ui/view.searchProject.php";
+       self::$s_Routes[PageUtil::$PROJECT]="/modules/projectArchive/ui/view.project.inc";
+       self::$s_Routes[PageUtil::$PROJECT_MEMBER]="/modules/projectArchive/ui/view.projectMember.inc";
+       self::$s_Routes[PageUtil::$PROJECT_HOME]="/modules/projectArchive/ui/view.projectHome.inc";
+       self::$s_Routes[PageUtil::$PROJECT_SEARCH]="/modules/projectArchive/ui/view.searchProject.inc";
 
        //Thesis Archive Routes
-       self::$s_Routes[PageUtil::$THESIS]="modules/thesisArchive/ui/view.thesis.php";
-       self::$s_Routes[PageUtil::$THESIS_MEMBER]="modules/thesisArchive/ui/view.thesisMember.php";
-       self::$s_Routes[PageUtil::$THESIS_HOME]="modules/thesisArchive/ui/view.thesisHome.php";
-       self::$s_Routes[PageUtil::$THESIS_SEARCH]="modules/thesisArchive/ui/view.searchThesis.php";
+       self::$s_Routes[PageUtil::$THESIS]="modules/thesisArchive/ui/view.thesis.inc";
+       self::$s_Routes[PageUtil::$THESIS_MEMBER]="modules/thesisArchive/ui/view.thesisMember.inc";
+       self::$s_Routes[PageUtil::$THESIS_HOME]="modules/thesisArchive/ui/view.thesisHome.inc";
+       self::$s_Routes[PageUtil::$THESIS_SEARCH]="modules/thesisArchive/ui/view.searchThesis.inc";
 
        //Email Archive Routes
-       self::$s_Routes[PageUtil::$EMAIL]="modules/emailArchive/ui/view.email.php";
-       self::$s_Routes[PageUtil::$EMAIL_RENEW]="modules/emailArchive/ui/view.emailRenew.php";
-       self::$s_Routes[PageUtil::$EMAIL_EXPIRED]="modules/emailArchive/ui/view.emailExpired.php";
+       self::$s_Routes[PageUtil::$EMAIL]="modules/emailArchive/ui/view.email.inc";
+       self::$s_Routes[PageUtil::$EMAIL_RENEW]="modules/emailArchive/ui/view.emailRenew.inc";
+       self::$s_Routes[PageUtil::$EMAIL_EXPIRED]="modules/emailArchive/ui/view.emailExpired.inc";
+       self::$s_Routes[PageUtil::$EMAIL_RELICENSE]="modules/emailArchive/ui/renew.inc";
+
 
        //Asset Archive Routes
-       self::$s_Routes[PageUtil::$ASSET]="modules/assetArchive/ui/view.asset.php";
-       self::$s_Routes[PageUtil::$ASSET_REPAIR_SEND]="modules/assetArchive/ui/view.sendRepair.php";
-       self::$s_Routes[PageUtil::$ASSET_REPAIR_RECEIVE]="modules/assetArchive/ui/view.receiveRepair.php";
-       self::$s_Routes[PageUtil::$ASSET_DETAILS]="modules/assetArchive/ui/view.assetDetails.php";
-       self::$s_Routes[PageUtil::$ASSET_LEND]="modules/assetArchive/ui/view.assetLend.php";
-       self::$s_Routes[PageUtil::$ASSET_RETURN]="modules/assetArchive/ui/view.assetReturn.php";
+       self::$s_Routes[PageUtil::$ASSET]="modules/assetArchive/ui/view.asset.inc";
+       self::$s_Routes[PageUtil::$ASSET_REPAIR_SEND]="modules/assetArchive/ui/view.sendRepair.inc";
+       self::$s_Routes[PageUtil::$ASSET_REPAIR_RECEIVE]="modules/assetArchive/ui/view.receiveRepair.inc";
+       self::$s_Routes[PageUtil::$ASSET_DETAILS]="modules/assetArchive/ui/view.assetDetails.inc";
+       self::$s_Routes[PageUtil::$ASSET_LEND]="modules/assetArchive/ui/view.assetLend.inc";
+       self::$s_Routes[PageUtil::$ASSET_RETURN]="modules/assetArchive/ui/view.assetReturn.inc";
+       self::$s_Routes[PageUtil::$ASSET_SEARCH]="modules/assetArchive/ui/view.assetSearch.inc";
+
 
       
     }
@@ -696,6 +704,7 @@ class MiddlewareUtil{
         self::$s_Routes[PageUtil::$EMAIL]=PageUtil::$LOGIN;
         self::$s_Routes[PageUtil::$EMAIL_RENEW]=PageUtil::$LOGIN;
         self::$s_Routes[PageUtil::$EMAIL_EXPIRED]=PageUtil::$LOGIN;
+        self::$s_Routes[PageUtil::$EMAIL_RELICENSE]=PageUtil::$LOGIN;
 
         //Asset Archive Middleware
         self::$s_Routes[PageUtil::$ASSET]=PageUtil::$LOGIN;
@@ -704,6 +713,7 @@ class MiddlewareUtil{
         self::$s_Routes[PageUtil::$ASSET_DETAILS]=PageUtil::$LOGIN;
         self::$s_Routes[PageUtil::$ASSET_LEND]=PageUtil::$LOGIN;
         self::$s_Routes[PageUtil::$ASSET_RETURN]=PageUtil::$LOGIN;
+        self::$s_Routes[PageUtil::$ASSET_SEARCH]=PageUtil::$LOGIN;
          
    
     }
