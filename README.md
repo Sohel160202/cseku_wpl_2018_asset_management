@@ -5,7 +5,7 @@ Copyright of this content is reserved by the founders, various contributors and 
 
 version 1.0 <br />
 
-Founder, Framework and Architecture: Dr. KAZI MASUDUL ALAM, Assistant Professor, CSE Discipline, Khulna University <br />
+Founder, Framework and Architecture: Dr. KAZI MASUDUL ALAM, Associate Professor, CSE Discipline, Khulna University <br />
 
 
 
