@@ -1,8 +1,8 @@
 <!--Search specific project-->
 <?php
 include_once UTILITY.'class.util.inc';
-include_once MODULE_PROJECT.'dao/class.assetSearchDao.inc';
-include_once MODULE_PROJECT.'dao/class.assetDao.inc';
+include_once MODULES_ASSET.'dao/class.assetSearchDao.inc';
+include_once MODULES_ASSET.'dao/class.assetDao.inc';
 
 /*
     User Business Object
@@ -34,6 +34,5 @@ Class SearchAssetBao
             $Result->setResultObject("Database failure in SearchAssetBao.getAllAssetType()");
         }
     }
-    
+}
 
-?>
