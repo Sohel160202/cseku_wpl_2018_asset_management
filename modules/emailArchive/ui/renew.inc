@@ -1,11 +1,11 @@
 <?php
-$EID=$_POST['eid'];
-$EXP=$_POST['exp'];
+$EID=$_GET['eid'];
+$EXP=$_GET['exp'];
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "cseku";
+$dbname = "based";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

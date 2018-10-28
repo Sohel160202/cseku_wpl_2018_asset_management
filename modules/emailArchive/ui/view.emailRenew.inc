@@ -17,7 +17,7 @@ include_once COMMON.'class.paginate.inc';
                     <th>Created At</th>
                     <th>Expire At</th>
                     <th>Validity</th>
-                    <th>Renew</th>
+                    <th><img src="./resources/img/renew.png" alt="Renew" class="table-img"></th>
                 </tr>
 
                 <!--Table Cells-->

@@ -7,7 +7,7 @@ include_once COMMON.'class.common.inc';
     <!--Heading-->
     <div class="panel panel-default myPanel">
         <div class="panel-heading myHeading">
-            <strong>&nbsp;Create Email Record</strong>
+            <strong><img src="./resources/img/createproject.png" alt="Icon" class="myImg">&nbsp;Create Email Record</strong>
         </div>
         <div class="panel-body">
 
@@ -146,8 +146,8 @@ include_once COMMON.'class.common.inc';
             <th>Address</th>
             <th>Created At</th>
             <th>Expire At</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th><img src="./resources/img/edit.ico" alt="Edit" class="table-img"></th>
+            <th><img src="./resources/img/delete.png" alt="Delete" class="table-img"></th>
         </tr>
 
         <!--Table Cells-->
@@ -210,16 +210,12 @@ include_once COMMON.'class.common.inc';
                     <td><?php echo $email->getEmailExpireAt(); ?></td>
 
                     <td>
-                        <?php
-                        if ($isValid){
-                            ?>
+                        
                             <a href="?edit=<?php echo $email->getEmailId(); ?>"
                                onclick="return confirm('sure to edit !');">edit</a>
-                            <?php
-                        }else{
-                            echo 'EXPIRED';
-                        }
-                        ?>
+                            
+                        
+                        
                     </td>
 
                     <td>
