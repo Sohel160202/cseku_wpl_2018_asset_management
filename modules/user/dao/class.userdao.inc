@@ -44,11 +44,10 @@ Class UserDAO{
 		    $this->_User->setEmail ( $row['Email'] );
 		    $this->_User->setPassword ( $row['Password'] );
 		    $this->_User->setFirstName( $row['FirstName'] );
-		    $this->_User->setMiddleName( $row['MiddleName'] );
 		    $this->_User->setLastName( $row['LastName'] );
 
 		    $Discipline = new Discipline();
-		    $Discipline->setID($row['DisciplineID']);
+		    $Discipline->setID($row['ID']);
 		    $Discipline = $this->_DisciplineDAO->readDiscipline($Discipline)->getResultObject();
 		    $this->_User->setDiscipline( $Discipline );
 
@@ -89,7 +88,6 @@ Class UserDAO{
 		    $this->_User->setEmail ( $row['Email'] );
 		    $this->_User->setPassword ( $row['Password'] );
 		    $this->_User->setFirstName( $row['FirstName'] );
-		    $this->_User->setMiddleName( $row['MiddleName'] );
 		    $this->_User->setLastName( $row['LastName'] );
 
 		    $Discipline = new Discipline();
@@ -330,11 +328,10 @@ Class UserDAO{
 	    $this->_User->setEmail ( $row['Email'] );
 	    $this->_User->setPassword ( $row['Password'] );
 	    $this->_User->setFirstName( $row['FirstName'] );
-	    $this->_User->setMiddleName( $row['MiddleName'] );
 	    $this->_User->setLastName( $row['LastName'] );
 
 	    $Discipline = new Discipline();
-	    $Discipline->setID($row['DisciplineID']);
+	    $Discipline->setID($row['ID']);
 	    $Discipline = $this->_DisciplineDAO->readDiscipline($Discipline)->getResultObject();
 	    $this->_User->setDiscipline( $Discipline );
 
